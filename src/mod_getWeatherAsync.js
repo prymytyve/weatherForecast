@@ -1,7 +1,7 @@
 export const getWeather = async (location) => {
   try {
     const weatherFetch = await fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=07c5f71571d64307b4f53832231511&q=${location}`,
+      `http://api.weatherapi.com/v1/forecast.json?key=07c5f71571d64307b4f53832231511&q=${location}&days=3`,
       { mode: "cors" }
     );
     const weatherData = await weatherFetch.json();
@@ -9,5 +9,11 @@ export const getWeather = async (location) => {
     console.log(weatherData);
   } catch (err) {
     console.log(err);
+    const weatherFetch = await fetch(
+      "http://api.weatherapi.com/v1/forecast.json?key=07c5f71571d64307b4f53832231511&q=auto:ip&days=3",
+      { mode: "cors" }
+    );
+    const weatherData = await weatherFetch.json();
+    console.log(weatherData);
   }
 };
