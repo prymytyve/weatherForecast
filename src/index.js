@@ -5,7 +5,7 @@ import { weatherObjCreator } from "./mod_weatherDataHandler";
 const form = document.querySelector("#form");
 const locationInput = document.querySelector("#location");
 
-weatherDisplay();
+weatherDisplay("auto:ip");
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
