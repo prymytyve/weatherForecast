@@ -1,0 +1,15 @@
+header{
+    display: flex;
+}
+
+#tempUnit{
+    display: none;
+}
+
+.container {
+    border: 1px solid lightblue;
+}
+
+.container > p:first-child::first-letter{
+    text-transform: uppercase;
+}

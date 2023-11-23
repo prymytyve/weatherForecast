@@ -6,11 +6,18 @@
     <title></title>
   </head>
   <body>
-    <form action="post" id="form">
-      <label for="location">Location: </label><input type="text" id="location">
-      <button class="submit">S</button>
-    </form>
-    <script src="main.js"></script>
+    <div class="wrapper">
+      <header>
+        <form action="post" id="form">
+          <label for="location">Location: </label><input type="text" id="location">
+          <button class="submit">S</button>
+        </form>
+        <input type="checkbox" id="tempUnit"><label for="tempUnit">°F</label>
+      </header>
+      <h1 class="headerInfo"></h1>
+      <div class="mainContent"></div>
+    </div>
+  <script src="main.js"></script>
   </body>
 </html>
 

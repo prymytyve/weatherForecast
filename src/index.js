@@ -1,20 +1,49 @@
 import "./style.css";
 import { getWeather } from "./mod_getWeatherAsync";
-// import { WeatherBlock, TodayWeatherBlock } from "../mod_weatherClass";
-import { weatherObjCreator } from "./mod_weatherDataHandler";
+import { WeatherBlock, weatherObjCreator } from "./mod_weatherDataHandler";
 const form = document.querySelector("#form");
 const locationInput = document.querySelector("#location");
+const headerInfo = document.querySelector(".headerInfo");
+const main = document.querySelector(".mainContent");
 
+//initial load
 weatherDisplay("auto:ip");
+
+//form control and results
+async function weatherDisplay(val) {
+  const i = await getWeather(val);
+  let time = i.current.last_updated;
+  let location = i.location.name;
+  headerInfo.textContent = time + " " + location;
+  weatherObjCreator(i.forecast.forecastday);
+}
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
+  main.replaceChildren();
   weatherDisplay(locationInput.value);
   form.reset();
 });
 
-async function weatherDisplay(val) {
-  const i = await getWeather(val);
-  console.log(i.location.name);
-  weatherObjCreator(i.current, i.forecast.forecastday);
-}
+const tempUnitCheck = document.querySelector("#tempUnit");
+const tempUnitLabel = document.querySelector("#tempUnit+label");
+
+const unitChange = (value) => {
+  const containers = document.querySelectorAll(".container");
+  console.log(containers);
+  containers.forEach((container) => {
+    const temp = container.querySelector(".temp");
+    const dataTemp = temp.getAttribute(`${value}`);
+    temp.textContent = dataTemp;
+  });
+};
+
+tempUnitCheck.addEventListener("change", (e) => {
+  if (tempUnitCheck.checked === true) {
+    tempUnitLabel.textContent = "°C";
+    unitChange("tempC");
+  } else if (tempUnitCheck.checked === false) {
+    tempUnitLabel.textContent = "°F";
+    unitChange("tempF");
+  }
+});
