@@ -1,7 +1,7 @@
 import format from "date-fns/format";
 import formatRelative from "date-fns/formatRelative";
 import parseISO from "date-fns/parseISO";
-const main = document.querySelector(".mainContent");
+const main = document.querySelector(".forecastRow");
 export class WeatherBlock {
   constructor(c, d, e, a1, a2, b1, b2) {
     // this._tempC = a;

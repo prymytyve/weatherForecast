@@ -16,9 +16,9 @@ async function weatherDisplay(val) {
   let time = i.current.last_updated;
   let location = i.location.name;
   headerInfo.textContent = time + " " + location;
-  console.log(i);
+  // console.log(i);
   weatherObjCreator(i.forecast.forecastday);
-  console.log(currentForecastCreator(i.current));
+  currentForecastCreator(i.current);
 }
 
 form.addEventListener("submit", async (e) => {
