@@ -15,6 +15,7 @@ async function weatherDisplay(val) {
   let time = i.current.last_updated;
   let location = i.location.name;
   headerInfo.textContent = time + " " + location;
+  // console.log(i);
   weatherObjCreator(i.forecast.forecastday);
 }
 
@@ -30,7 +31,6 @@ const tempUnitLabel = document.querySelector("#tempUnit+label");
 
 const unitChange = (value) => {
   const containers = document.querySelectorAll(".container");
-  console.log(containers);
   containers.forEach((container) => {
     const temp = container.querySelector(".temp");
     const dataTemp = temp.getAttribute(`${value}`);

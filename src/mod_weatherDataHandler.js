@@ -3,13 +3,17 @@ import formatRelative from "date-fns/formatRelative";
 import parseISO from "date-fns/parseISO";
 const main = document.querySelector(".mainContent");
 export class WeatherBlock {
-  constructor(a, b, c, d, e) {
-    this._tempC = a;
-    this._tempF = b;
+  constructor(c, d, e, a1, a2, b1, b2) {
+    // this._tempC = a;
+    // this._tempF = b;
     this._condition = c;
     this._icon = d;
     this._time = e;
     this._day = this.formattedTime(e);
+    this._maxTempC = a1;
+    this._minTempC = a2;
+    this._maxTempF = b1;
+    this._minTempF = b2;
   }
 
   get day() {
@@ -33,8 +37,8 @@ export class WeatherBlock {
     temp.classList.add("temp");
     const tempUnitCheck = document.querySelector("#tempUnit");
     let tempChoice; //display temp in celsius is checkbox is checked, else displays in fahrenheit (default)
-    const tC = this._tempC + " °C";
-    const tF = this._tempF + " °F";
+    const tC = "H: " + this._maxTempC + "° / " + "L: " + this._minTempC + "°";
+    const tF = "H: " + this._maxTempF + "° / " + "L: " + this._minTempF + "°";
     tempUnitCheck.checked === true ? (tempChoice = tC) : (tempChoice = tF);
     temp.textContent = tempChoice;
     temp.setAttribute("tempC", `${tC}`);
@@ -60,21 +64,31 @@ export class WeatherBlock {
   };
 }
 
+class CurrentWeather extends WeatherBlock {
+  constructor() {
+    super();
+  }
+}
+
 export const weatherObjCreator = (forecast) => {
   console.log(forecast);
   forecast.forEach((item) => {
     const date = item.date;
     const {
-      avgtemp_c,
-      avgtemp_f,
       condition: { text: cText, icon: cUrl },
+      maxtemp_c,
+      mintemp_c,
+      maxtemp_f,
+      mintemp_f,
     } = item.day;
     const upcomingForecast = new WeatherBlock(
-      avgtemp_c,
-      avgtemp_f,
       cText,
       cUrl,
-      date
+      date,
+      maxtemp_c,
+      mintemp_c,
+      maxtemp_f,
+      mintemp_f
     );
     console.log(upcomingForecast);
     upcomingForecast.appendThis();
