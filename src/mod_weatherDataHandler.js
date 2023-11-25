@@ -64,14 +64,8 @@ export class WeatherBlock {
   };
 }
 
-class CurrentWeather extends WeatherBlock {
-  constructor() {
-    super();
-  }
-}
-
 export const weatherObjCreator = (forecast) => {
-  console.log(forecast);
+  // console.log(forecast);
   forecast.forEach((item) => {
     const date = item.date;
     const {
@@ -90,7 +84,7 @@ export const weatherObjCreator = (forecast) => {
       maxtemp_f,
       mintemp_f
     );
-    console.log(upcomingForecast);
+    // console.log(upcomingForecast);
     upcomingForecast.appendThis();
   });
 };
