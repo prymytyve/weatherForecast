@@ -53,15 +53,6 @@ export class WeatherBlock {
     div.appendChild(img);
     main.appendChild(div);
   };
-
-  changeUnit = (bool) => {
-    const temp = document.querySelector(`.${this.day} .temp`);
-    let tempChoice; //display temp in celsius is checkbox is checked, else displays in fahrenheit (default)
-    bool === true
-      ? (tempChoice = this._tempC + " °C")
-      : (tempChoice = this._tempF + " °F");
-    temp.textContent = tempChoice;
-  };
 }
 
 export const weatherObjCreator = (forecast) => {
