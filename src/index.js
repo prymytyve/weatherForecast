@@ -1,6 +1,7 @@
 import "./style.css";
 import { getWeather } from "./mod_getWeatherAsync";
 import { WeatherBlock, weatherObjCreator } from "./mod_weatherDataHandler";
+import { currentForecastCreator } from "./mod_currentForecast.js";
 const form = document.querySelector("#form");
 const locationInput = document.querySelector("#location");
 const headerInfo = document.querySelector(".headerInfo");
@@ -15,8 +16,9 @@ async function weatherDisplay(val) {
   let time = i.current.last_updated;
   let location = i.location.name;
   headerInfo.textContent = time + " " + location;
-  // console.log(i);
+  console.log(i);
   weatherObjCreator(i.forecast.forecastday);
+  console.log(currentForecastCreator(i.current));
 }
 
 form.addEventListener("submit", async (e) => {
