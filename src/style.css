@@ -14,6 +14,7 @@ p, img, body{
     margin: 0px auto;
     border-left: solid lightgrey 1px;
     border-right: solid lightgray 1px;
+    position: relative;
 }
 
 .wrapper > *{
@@ -139,4 +140,14 @@ header{
 
 .current>img{
     margin:20px auto;
+}
+
+footer{
+    position: absolute;
+    bottom:0px;
+    display: flex;
+    justify-content: space-between;
+    min-width: 100%;
+    font-size: 8px;
+    border-top: solid gray 1px;
 }

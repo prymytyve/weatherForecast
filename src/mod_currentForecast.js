@@ -1,4 +1,3 @@
-import { getGif } from "./mod_getGiphyAsync";
 import format from "date-fns/format";
 const main = document.querySelector(".mainContent");
 class CurrentForecast {
@@ -61,17 +60,14 @@ class CurrentForecast {
   };
 }
 
-export const currentForecastCreator = async (current, location) => {
+export const currentForecastCreator = async (current, location, gifUrl) => {
   const {
     temp_c,
     temp_f,
     condition: { text: cText, icon: cUrl },
     last_updated,
   } = current;
-  let currentCond;
-  cText === "Partly cloudy" ? (currentCond = "Cloudy") : (currentCond = cText);
-  const gif = await getGif(currentCond);
-  const gifUrl = gif.data.images.original.url;
+
   const currentWeather = new CurrentForecast(
     temp_c,
     temp_f,

@@ -1,10 +1,23 @@
 export const getGif = async (condition) => {
-    try { 
-        const gifFetch = await fetch(`https://api.giphy.com/v1/gifs/translate?api_key=sgI2KzxUU6QYL5ljJmdc4LK8DoDWvqs9&s=${condition}`, { mode: 'cors' })
-        const gifData = await gifFetch.json()
-        if ("error" in gifData) throw new Error(gifData.error.message); 
-        return gifData;
-    } catch (err) {
-      console.log(err)  
-    }
-}
+  try {
+    const start = Date.now();
+    const gifFetch = await fetch(
+      `https://api.giphy.com/v1/gifs/translate?api_key=sgI2KzxUU6QYL5ljJmdc4LK8DoDWvqs9&s=${condition}`,
+      { mode: "cors" }
+    );
+    const getTime = (Date.now() - start) / 1000;
+    const gifData = await gifFetch.json();
+    if ("error" in gifData) throw new Error(gifData.error.message);
+    return [gifData, getTime];
+  } catch (err) {
+    console.log(err);
+    const start = Date.now();
+    const gifFetch = await fetch(
+      "https://api.giphy.com/v1/gifs/translate?api_key=sgI2KzxUU6QYL5ljJmdc4LK8DoDWvqs9&s=puppies",
+      { mode: "cors" }
+    );
+    const getTime = (Date.now() - start) / 1000;
+    const gifData = await gifFetch.json();
+    return [gifData, getTime];
+  }
+};
