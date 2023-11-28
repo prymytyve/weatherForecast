@@ -9,7 +9,7 @@ export const getWeather = async (location) => {
     //console.log(weatherData);
     return weatherData;
   } catch (err) {
-    console.log(err);
+    alert(`${location} could not be found`);
     const weatherFetch = await fetch(
       "http://api.weatherapi.com/v1/forecast.json?key=07c5f71571d64307b4f53832231511&q=auto:ip&days=3",
       { mode: "cors" }

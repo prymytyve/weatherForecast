@@ -1,17 +1,30 @@
 import { getGif } from "./mod_getGiphyAsync";
-const main = document.querySelector(".forecastRow");
+import format from "date-fns/format";
+const main = document.querySelector(".mainContent");
 class CurrentForecast {
-  constructor(a, b, c, d, e) {
+  constructor(a, b, c, d, e, f, g) {
     this._tempC = a;
     this._tempF = b;
     this._condition = c;
     this._icon = d;
     this._gifUrl = e;
+    this._time = f;
+    this._location = g;
   }
+
+  formatTime = () => {
+    return format(new Date(this._time), "iii, MMM dd h:mm aaaa");
+  };
 
   appendThis = () => {
     const div = document.createElement("div");
     div.classList.add("container", "current");
+    const location = document.createElement("p");
+    location.classList.add("locationP");
+    location.textContent = this._location;
+    const time = document.createElement("p");
+    time.classList.add("timeP");
+    time.textContent = this.formatTime();
     const temp = document.createElement("p");
     temp.classList.add("temp");
     const tempUnitCheck = document.querySelector("#tempUnit");
@@ -28,28 +41,45 @@ class CurrentForecast {
     img.src = this._icon;
     const gif = new Image();
     gif.src = this._gifUrl;
-    div.appendChild(temp);
-    div.appendChild(condition);
-    div.appendChild(img);
+
+    const infoRow = document.createElement("div");
+    infoRow.classList.add("infoRow");
+    infoRow.appendChild(location);
+    infoRow.appendChild(time);
+    const tempStuff = document.createElement("div");
+    tempStuff.classList.add("tempStuff");
+    const div2 = document.createElement("div");
+    div2.classList.add("iconAndCond");
+    div2.appendChild(img);
+    div2.appendChild(condition);
+    tempStuff.appendChild(div2);
+    tempStuff.appendChild(temp);
+    infoRow.appendChild(tempStuff);
+    div.appendChild(infoRow);
     div.appendChild(gif);
     main.appendChild(div);
   };
 }
 
-export const currentForecastCreator = async (current) => {
+export const currentForecastCreator = async (current, location) => {
   const {
     temp_c,
     temp_f,
     condition: { text: cText, icon: cUrl },
+    last_updated,
   } = current;
-  const gif = await getGif(cText);
+  let currentCond;
+  cText === "Partly cloudy" ? (currentCond = "Cloudy") : (currentCond = cText);
+  const gif = await getGif(currentCond);
   const gifUrl = gif.data.images.original.url;
   const currentWeather = new CurrentForecast(
     temp_c,
     temp_f,
     cText,
     cUrl,
-    gifUrl
+    gifUrl,
+    last_updated,
+    location
   );
   currentWeather.appendThis();
 };

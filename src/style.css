@@ -1,15 +1,142 @@
+p, img, body{
+    margin: 0px;
+    padding: 0px;
+}
+
+.wrapper{
+    height: 100vh;
+    width: clamp( 300px, 100vw, 800px);  
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    justify-content: center;   
+    align-content: start;
+    margin: 0px auto;
+    border-left: solid lightgrey 1px;
+    border-right: solid lightgray 1px;
+}
+
+.wrapper > *{
+    margin: 0px auto;
+    padding: 3px 10px;
+    box-sizing: border-box;
+}
+
 header{
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border-bottom: solid lightgrey 1px;
+    padding: 5px 20px;
 }
 
 #tempUnit{
     display: none;
 }
 
-.container {
-    border: 1px solid lightblue;
+#tempUnit+div{
+    border: 0px solid black;
+    background-color: rgb(48, 95, 112);
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;    
 }
 
-.container > p:first-child::first-letter{
+#tempUnit+div>label{
+    color: white;
+    font-weight: bolder;
+    letter-spacing: 2px;
+}
+
+.submit{
+    border-radius: 5px;
+}
+
+.mainContent{
+    width: 100%;
+}
+
+.forecastRow{
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+    scale: 60%;
+    padding: 10px 0px;
+}
+
+.forecastRow > .container {
+    display: grid;
+    justify-items: center;
+    padding: 0px 20px;
+    flex: 1 1 0;
+}
+
+.forecastRow > .container:not(.container:first-child, .container:last-child){
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+}
+
+.forecastRow>.container>p:first-child{
+    font-weight: bolder;
+}
+
+.forecastRow>.container > p:first-child::first-letter{
     text-transform: uppercase;
+}
+
+
+.iconAndCond{
+    display:grid;
+    justify-items: center;
+}
+
+.forecastRow .iconAndCond > img{
+    margin-top:-8px;
+    margin-bottom: -15px;
+}
+
+.iconAndCond > p{
+    font-style: italic;
+}
+
+.current{
+    margin-top: 20px;
+    display: grid;
+}
+
+.locationP{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.timeP{
+    font-size: 16px;
+}
+
+.tempStuff{
+    display: flex;
+    justify-content: center;
+    margin:20px;
+    gap:10px;
+}
+
+.tempStuff>p{
+    font-size: 75px;
+}
+
+.current .iconAndCond{
+    margin-top: 5px;
+}
+
+.current .iconAndCond>img{
+    margin-bottom: -25px;
+}
+
+.current>img{
+    margin:20px auto;
 }

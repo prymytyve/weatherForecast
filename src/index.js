@@ -2,9 +2,10 @@ import "./style.css";
 import { getWeather } from "./mod_getWeatherAsync";
 import { WeatherBlock, weatherObjCreator } from "./mod_weatherDataHandler";
 import { currentForecastCreator } from "./mod_currentForecast.js";
+import format from "date-fns/format";
 const form = document.querySelector("#form");
 const locationInput = document.querySelector("#location");
-const headerInfo = document.querySelector(".headerInfo");
+const forecastRow = document.querySelector(".forecastRow");
 const main = document.querySelector(".mainContent");
 
 //initial load
@@ -13,23 +14,21 @@ weatherDisplay("auto:ip");
 //form control and results
 async function weatherDisplay(val) {
   const i = await getWeather(val);
-  let time = i.current.last_updated;
-  let location = i.location.name;
-  headerInfo.textContent = time + " " + location;
   // console.log(i);
   weatherObjCreator(i.forecast.forecastday);
-  currentForecastCreator(i.current);
+  currentForecastCreator(i.current, i.location.name);
 }
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
   main.replaceChildren();
+  forecastRow.replaceChildren();
   weatherDisplay(locationInput.value);
   form.reset();
 });
 
 const tempUnitCheck = document.querySelector("#tempUnit");
-const tempUnitLabel = document.querySelector("#tempUnit+label");
+const tempUnitLabel = document.querySelector("#tempUnit+div>label");
 
 const unitChange = (value) => {
   const containers = document.querySelectorAll(".container");

@@ -9,14 +9,13 @@
     <div class="wrapper">
       <header>
         <form action="post" id="form">
-          <label for="location">Location: </label><input type="text" id="location">
-          <button class="submit">S</button>
+        <input type="text" id="location" placeholder="Location...">
+          <button class="submit">Submit</button>
         </form>
-        <input type="checkbox" id="tempUnit"><label for="tempUnit">°F</label>
+        <input type="checkbox" id="tempUnit"><div class="tempCircle"><label for="tempUnit">°F</label></div>
       </header>
-      <h1 class="headerInfo"></h1>
-      <div class="forecastRow"></div>
       <div class="mainContent"></div>
+      <div class="forecastRow"></div>
     </div>
   <script src="main.js"></script>
   </body>

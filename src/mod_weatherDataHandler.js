@@ -37,8 +37,10 @@ export class WeatherBlock {
     temp.classList.add("temp");
     const tempUnitCheck = document.querySelector("#tempUnit");
     let tempChoice; //display temp in celsius is checkbox is checked, else displays in fahrenheit (default)
-    const tC = "H: " + this._maxTempC + "° / " + "L: " + this._minTempC + "°";
-    const tF = "H: " + this._maxTempF + "° / " + "L: " + this._minTempF + "°";
+    // const tC = "H: " + this._maxTempC + "° / " + "L: " + this._minTempC + "°";
+    // const tF = "H: " + this._maxTempF + "° / " + "L: " + this._minTempF + "°";
+    const tC = this._maxTempC + "° / " + this._minTempC + "°";
+    const tF = this._maxTempF + "° / " + this._minTempF + "°";
     tempUnitCheck.checked === true ? (tempChoice = tC) : (tempChoice = tF);
     temp.textContent = tempChoice;
     temp.setAttribute("tempC", `${tC}`);
@@ -49,8 +51,11 @@ export class WeatherBlock {
     img.src = this._icon;
     div.appendChild(time);
     div.appendChild(temp);
-    div.appendChild(condition);
-    div.appendChild(img);
+    const div2 = document.createElement("div");
+    div2.classList.add("iconAndCond");
+    div2.appendChild(img);
+    div2.appendChild(condition);
+    div.appendChild(div2);
     main.appendChild(div);
   };
 }
