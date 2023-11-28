@@ -3,7 +3,7 @@ export const getWeather = async (location) => {
   try {
     const start = Date.now();
     const weatherFetch = await fetch(
-      `http://api.weatherapi.com/v1/forecast.json?key=07c5f71571d64307b4f53832231511&q=${location}&days=3`,
+      `https://api.weatherapi.com/v1/forecast.json?key=07c5f71571d64307b4f53832231511&q=${location}&days=3`,
       { mode: "cors" }
     );
     const getTime = (Date.now() - start) / 1000;
@@ -18,7 +18,7 @@ export const getWeather = async (location) => {
     console.log(err.message);
     const start = Date.now();
     const weatherFetch = await fetch(
-      "http://api.weatherapi.com/v1/forecast.json?key=07c5f71571d64307b4f53832231511&q=auto:ip&days=3",
+      "https://api.weatherapi.com/v1/forecast.json?key=07c5f71571d64307b4f53832231511&q=auto:ip&days=3",
       { mode: "cors" }
     );
     const getTime = (Date.now() - start) / 1000;
