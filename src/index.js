@@ -29,7 +29,7 @@ async function weatherDisplay(val) {
   weatherObjCreator(i.forecast.forecastday);
   currentForecastCreator(i.current, i.location.name, gifUrl);
   const getTime = (Date.now() - start) / 1000;
-  const timers = { weatherApi: weatherTime, giphyApi: gifTime, Total: getTime };
+  const timers = { Weatherapi: weatherTime, Giphyapi: gifTime, Total: getTime };
   footerAppend(timers);
 }
 
